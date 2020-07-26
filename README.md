@@ -17,3 +17,5 @@ rules: {
 - ESLint
     - [Airbnb Style Guide](https://github.com/airbnb/javascript)
 - [Nodemon](https://nodemon.io) - gives hot reloading
+- [Embedded Javascript Templates (EJS)](https://ejs.co/)
+    - Used for inserting variables into HTML, similar to Razor, Vue, etc

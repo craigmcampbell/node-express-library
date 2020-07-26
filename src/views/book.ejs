@@ -1,0 +1,55 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <title>Library Demo with Node, Express, & MongoDB</title>
+    </head>
+    <body>
+        <header>
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+                <div class="container">
+                    <span class="navbar-brand">Library</span>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                        <ul class="navbar-nav flex-grow-1">
+                            <% for(var i = 0; i < nav.length; i++) { %>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" href="<%= nav[i].link %>"><%= nav[i].title%></a>
+                                </li>
+                            <%}%>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <div class="container">
+            <main role="main" class="pb-3">
+                <h1>Welcome to <%=title%></h1>
+
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= book.title%></h5>
+                        <h6 class="card-subtitle mb-2 text-muted"><%= book.author%></h6>
+                        <p class="card-text">
+                            <%= book.genre%><br/>
+                            <%= book.read ? "Read" : "Unread" %><br/>
+                        </p>
+                    </div>
+                </div>
+            </main>
+        </div>
+    
+        <footer class="border-top footer text-muted">
+            <div class="container">
+                &copy; 2020 - Craig Campbell
+            </div>
+        </footer>
+        
+        <script src="/js/jquery.slim.min.js"></script>
+        <script src="/js/popper.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+    </body>
+</html>

@@ -13,5 +13,6 @@ module.exports = {
     rules: {
         'linebreak-style': ['error', 'windows'], // or unix
         indent: ['error', 4], // 4 spances, or 'tab'
+        'comma-dangle': 0,
     },
 };
