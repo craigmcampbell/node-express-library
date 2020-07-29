@@ -3,9 +3,25 @@ const chalk = require('chalk');
 const morgan = require('morgan');
 const debug = require('debug')('app');
 const path = require('path');
+const sql = require('mssql');
 
 const app = express();
 const port = process.env.PORT || 3000;
+
+// Set up SqlServer
+const config = {
+    user: '',
+    password: '',
+    server: '', // You can use 'localhost\\instance' to connect to named instance
+    database: 'Library',
+
+    options: {
+        encrypt: true, // Use this if you are on Azure
+        enableArithAbort: true
+    }
+};
+
+sql.connect(config).catch((err) => (debug(err)));
 
 // Middleware
 app.use(morgan('tiny'));

@@ -1,50 +1,51 @@
 const express = require('express');
 
+const debug = require('debug')('app:bookRoutes');
+
 const bookRouter = express.Router();
+const sql = require('mssql');
 
 function router(nav) {
-    const books = [
-        {
-            title: 'The Eye of the World',
-            genre: 'Fantasy',
-            author: 'Jordan, Robert',
-            read: true
-        },
-        {
-            title: 'D-Day',
-            genre: 'History',
-            author: 'Beevor, Anthony',
-            read: false
-        },
-        {
-            title: 'Get Programming with F#',
-            genre: 'Programming',
-            author: 'Abraham, Isaac',
-            read: false
-        }
-    ];
-
     bookRouter.route('/')
         .get((req, res) => {
-            res.render(
-                'bookList',
-                {
-                    nav,
-                    title: 'Books',
-                    books
-                }
-            );
+            (async function query() {
+                const request = new sql.Request();
+                const { recordset } = await request.query('SELECT * FROM Books');
+
+                // debug(recordset);
+                res.render(
+                    'bookList',
+                    {
+                        nav,
+                        title: 'Books',
+                        books: recordset
+                    }
+                );
+            }());
         });
 
     bookRouter.route('/:id')
-        .get((req, res) => {
+        .all((req, res, next) => {
             const { id } = req.params;
+
+            (async function query() {
+                const request = new sql.Request();
+                const { recordset } = await request.input('id', sql.Int, id)
+                    .query('SELECT * FROM Books WHERE Id = @id');
+
+                [req.book] = recordset;
+                next();
+
+                debug(recordset);
+            }());
+        })
+        .get((req, res) => {
             res.render(
                 'book',
                 {
                     nav,
                     title: 'Books',
-                    book: books[id]
+                    book: req.book
                 }
             );
         });
