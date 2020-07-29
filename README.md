@@ -22,4 +22,4 @@ rules: {
 - [EJS - Embedded JavaScript Templating](https://ejs.co/)
 - [morgan](https://www.npmjs.com/package/morgan)
     - Middleware for writing out HTTP logging
-[mssql](https://www.npmjs.com/package/mssql) - package used to manage our connection and make database calls
+- [mssql](https://www.npmjs.com/package/mssql) - package used to manage our connection and make database calls
