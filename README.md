@@ -23,3 +23,8 @@ rules: {
 - [morgan](https://www.npmjs.com/package/morgan)
     - Middleware for writing out HTTP logging
 - [mssql](https://www.npmjs.com/package/mssql) - package used to manage our connection and make database calls
+- [mongodb](https://www.npmjs.com/package/mongodb) - package use to interact with MongoDB
+
+#### MongoDB Queries
+- Get all for collection: `db.#collection#.find().pretty()`
+- Find one: `db.books.find({"title": "The Eye of the World"}).pretty()`

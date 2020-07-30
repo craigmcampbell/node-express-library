@@ -21,7 +21,7 @@ const config = {
     }
 };
 
-sql.connect(config).catch((err) => (debug(err)));
+// sql.connect(config).catch((err) => (debug(err)));
 
 // Middleware
 app.use(morgan('tiny'));
@@ -38,12 +38,16 @@ app.set('view engine', 'ejs');
 // Navigation/Routing
 const nav = [
     { link: '/books', title: 'Books' },
-    { link: '/authors', title: 'Authors' }
+    { link: '/authors', title: 'Authors' },
+    { link: '/admin', title: 'Admin' }
 ];
 
 const bookRouter = require('./src/routes/bookRoutes')(nav);
+const adminRouter = require('./src/routes/adminRoutes')(nav);
 
 app.use('/books', bookRouter);
+app.use('/admin', adminRouter);
+
 app.get('/', (req, res) => {
     res.render(
         'index',

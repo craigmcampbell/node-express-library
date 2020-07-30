@@ -13,12 +13,12 @@
                 <% for(var i = 0; i < books.length; i++) { %>
                     <div class="card mb-3">
                         <div class="card-body">
-                            <h5 class="card-title"><%= books[i].Title%></h5>
-                            <h6 class="card-subtitle mb-2 text-muted"><%= books[i].Author%></h6>
+                            <h5 class="card-title"><%= books[i].title%></h5>
+                            <h6 class="card-subtitle mb-2 text-muted"><%= books[i].author%></h6>
                             <p class="card-text">
-                                <%= books[i].Genre%><br/>
-                                <%= books[i].HasRead ? "Read" : "Unread" %><br/>
-                                <a href="/books/<%= books[i].Id%>" class="card-link">Read More</a>
+                                <%= books[i].genre%><br/>
+                                <%= books[i].hasRead ? "Read" : "Unread" %><br/>
+                                <a href="/books/<%= books[i]._id%>" class="card-link">Read More</a>
                             </p>
                         </div>
                     </div>
