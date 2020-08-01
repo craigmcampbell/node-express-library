@@ -8,14 +8,14 @@
 
         <div class="container">
             <main role="main" class="pb-3">
-                <h1>Welcome to <%=title%></h1>       
+                <h1><%=title%></h1>       
             </main>
 
             <div class="card mb-5">
                 <div class="card-body">
-                    <h5 class="card-title">Create An Account</h5>
+                    <h5 class="card-title">Log In</h5>
                     
-                    <form name="accountCreation" action="/auth/signUp" method="POST">
+                    <form name="signIn" action="/auth/signin" method="POST">
                         <div class="form-row mb-3">
                             <div class="col">
                                 <label>Email</label>
@@ -30,7 +30,7 @@
                             </div>                            
                         </div>
 
-                        <input type="submit" value="Save" class="btn btn-success" />
+                        <input type="submit" value="Submit" class="btn btn-success" />
 
                     </form>
                 </div>

@@ -24,6 +24,13 @@ rules: {
     - Middleware for writing out HTTP logging
 - [mssql](https://www.npmjs.com/package/mssql) - package used to manage our connection and make database calls
 - [mongodb](https://www.npmjs.com/package/mongodb) - package use to interact with MongoDB
+- [body-parser](https://www.npmjs.com/package/body-parser) - used to handle form post data
+- [passport](https://www.npmjs.com/package/passport) - handled user authentication
+    - Uses different strategies for different types of authentication
+        - Local Strategy - for local authentication
+        - [List of Other Strategies](http://www.passportjs.org/)
+- [cookie-parser](https://www.npmjs.com/package/cookie-parser) - manage cookies with passport
+- [express-session](https://www.npmjs.com/package/cookieparser) - session management middleware for Express
 
 #### MongoDB Queries
 - Get all for collection: `db.#collection#.find().pretty()`
