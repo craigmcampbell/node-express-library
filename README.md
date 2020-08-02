@@ -36,3 +36,4 @@ rules: {
 #### MongoDB Queries
 - Get all for collection: `db.#collection#.find().pretty()`
 - Find one: `db.books.find({"title": "The Eye of the World"}).pretty()`
+- Delete all: `db.books.remove({})`
