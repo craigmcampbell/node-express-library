@@ -31,6 +31,7 @@ rules: {
         - [List of Other Strategies](http://www.passportjs.org/)
 - [cookie-parser](https://www.npmjs.com/package/cookie-parser) - manage cookies with passport
 - [express-session](https://www.npmjs.com/package/cookieparser) - session management middleware for Express
+- [xml2js](https://www.npmjs.com/package/xml2js) - convert XML to JSON
 
 #### MongoDB Queries
 - Get all for collection: `db.#collection#.find().pretty()`

@@ -1,105 +1,39 @@
 const express = require('express');
-const { MongoClient, ObjectID } = require('mongodb');
-const debug = require('debug')('app:bookRoutes');
+const bookController = require('../controllers/bookController');
 
 const bookRouter = express.Router();
-const sql = require('mssql');
+const bookService = require('../services/goodreadsService');
+// const sql = require('mssql');
 
 function router(nav) {
-    bookRouter.use((req, res, next) => {
-        if (req.user) {
-            next();
-        } else {
-            res.redirect('/');
-        }
-    });
+    const { getIndex, getById, middleware } = bookController(bookService, nav);
+
+    bookRouter.use(middleware);
 
     bookRouter.route('/')
-        .get((req, res) => {
-            (async function query() {
-                // const request = new sql.Request();
-                // const { recordset } = await request.query('SELECT * FROM Books');
+        .get(getIndex);
 
-                const url = 'mongodb://localhost:27017';
-                const dbName = 'libraryApp';
-
-                (async function mongo() {
-                    let client;
-                    try {
-                        client = await MongoClient.connect(url);
-                        debug('connected to mongodb');
-
-                        const db = client.db(dbName);
-
-                        const col = await db.collection('books');
-                        const books = await col.find().toArray();
-
-                        // MongoDB Version
-                        res.render(
-                            'bookList',
-                            {
-                                nav,
-                                title: 'Books',
-                                books
-                            }
-                        );
-                    } catch (err) {
-                        debug(err.stack);
-                    }
-
-                    client.close();
-                }());
-
-                // SQL Version
-                // debug(recordset);
-                // res.render(
-                //     'bookList',
-                //     {
-                //         nav,
-                //         title: 'Books',
-                //         books: recordset
-                //     }
-                // );
-            }());
-        });
-
-    // MongoDB Version
     bookRouter.route('/:id')
-        .get((req, res) => {
-            (async function query() {
-                const { id } = req.params;
-                const url = 'mongodb://localhost:27017';
-                const dbName = 'libraryApp';
+        .get(getById);
 
-                (async function mongo() {
-                    let client;
-                    try {
-                        client = await MongoClient.connect(url);
-                        debug('connected to mongodb');
+    // SQL Version
+    // bookRouter.route('/')
+    //     .get((req, res) => {
+    //         (async function query() {
+    //             const request = new sql.Request();
+    //             const { recordset } = await request.query('SELECT * FROM Books');
 
-                        const db = client.db(dbName);
-
-                        const col = await db.collection('books');
-
-                        const book = await col.findOne({ _id: new ObjectID(id) });
-
-                        // MongoDB Version
-                        res.render(
-                            'book',
-                            {
-                                nav,
-                                title: 'Books',
-                                book
-                            }
-                        );
-                    } catch (err) {
-                        debug(err.stack);
-                    }
-
-                    client.close();
-                }());
-            }());
-        });
+    //             debug(recordset);
+    //             res.render(
+    //                 'bookList',
+    //                 {
+    //                     nav,
+    //                     title: 'Books',
+    //                     books: recordset
+    //                 }
+    //             );
+    //         }());
+    //     });
 
     // SQL Version
     // bookRouter.route('/:id')

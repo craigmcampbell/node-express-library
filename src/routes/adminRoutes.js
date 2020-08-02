@@ -9,18 +9,21 @@ const books = [
         title: 'The Eye of the World',
         genre: 'Fantasy',
         author: 'Jordan, Robert',
+        bookId: 228665,
         hasRead: true
     },
     {
-        title: 'Get Programming in F#',
+        title: 'Get Programming with F#',
         genre: 'Technical',
         author: 'Abraham, Isaac',
+        bookId: 40617290,
         hasRead: false
     },
     {
         title: 'D-Day',
         genre: 'History',
         author: 'Beevor, Antony',
+        bookId: 7939062,
         hasRead: false
     }
 ];
